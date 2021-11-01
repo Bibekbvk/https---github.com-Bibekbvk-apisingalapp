@@ -5,10 +5,10 @@ const pool = mysql.createPool({
     connectionLimit:10000,
     
 
-    user: 'root',
-    password: '',
-    database:'somu',
-    host:'localhost',
+    user: '7nM82N5bJZ',
+    password: 'cddS76K9Lu',
+    database:'7nM82N5bJZ',
+    host:'remotemysql.com',
     port: '3306'
 
 
