@@ -7,7 +7,7 @@ const pool = mysql.createPool({
 
     user: 'root',
     password: '',
-    database:'signal',
+    database:'somu',
     host:'localhost',
     port: '3306'
 
@@ -22,6 +22,53 @@ signalapp.getnews = () => {
     return new Promise((resolve,reject) => {
           
         pool.query(`SELECT * FROM news`,(err,results) => {
+
+            
+            if(err){
+                return reject(err);
+            }
+            else{
+                return resolve(results);
+            }
+
+        });
+
+
+    });
+
+
+};
+
+signalapp.getarticle = () => {
+
+    return new Promise((resolve,reject) => {
+          
+        pool.query(`SELECT * FROM article`,(err,results) => {
+
+            
+            if(err){
+                return reject(err);
+            }
+            else{
+                return resolve(results);
+            }
+
+        });
+
+
+    });
+
+
+};
+
+
+
+
+signalapp.getsignal_app = () => {
+
+    return new Promise((resolve,reject) => {
+          
+        pool.query(`SELECT * FROM signal_app`,(err,results) => {
 
             
             if(err){
@@ -90,8 +137,29 @@ signalapp.insertemergency = (E_ID,Name,Contact1,Contact2,location) => {
 
 };
 
+signalapp.insertfeedback = (contact,name,feedback) => {
+
+    return new Promise((resolve,reject) => {
+
+        pool.query('insert into feedback(  name, contact, feedback) values(?, ?, ?)',
+        [ contact, name, feedback],(err,results) => {
+        
+            if(err){
+               
+                return reject(err);}
+         
+            else{
+                return resolve(results);
+            }
+
+        });
+    });
+
+};
+
 
 
 
 
 module.exports = signalapp;
+
